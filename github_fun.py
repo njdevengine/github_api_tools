@@ -47,3 +47,11 @@ def analyze(repo1,repo2):
         
 #format is username/reponame as it appears in url for a given repo
 analyze("username1/repo1","username2/repo2")
+
+#raw commit json
+patch = repo.get_commits()[0].raw_data
+
+#get email
+g.get_user("USERNAME GOES HERE").get_repos()[0].get_commits()[0].raw_data["commit"]["author"]["email"]
+#get name
+g.get_user("USERNAME GOES HERE").get_repos()[0].get_commits()[0].raw_data["commit"]["author"]["email"]
