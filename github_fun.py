@@ -43,7 +43,10 @@ def analyze(repo1,repo2):
     for x in repo_2.get_stargazers_with_dates():
         gazers_2.append(x.user.html_url)
     for i in list(set(gazers_1).intersection(gazers_2)):
-        print(i)
+        try:
+            print(i,g.get_user(str(i.split("/")[-1])).get_repos()[0].get_commits()[0].raw_data["commit"]["author"]["email"])
+        except:
+            print(i,"no repos")
         
 #format is username/reponame as it appears in url for a given repo
 analyze("username1/repo1","username2/repo2")
