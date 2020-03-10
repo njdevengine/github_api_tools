@@ -58,3 +58,17 @@ patch = repo.get_commits()[0].raw_data
 g.get_user("USERNAME GOES HERE").get_repos()[0].get_commits()[0].raw_data["commit"]["author"]["email"]
 #get name
 g.get_user("USERNAME GOES HERE").get_repos()[0].get_commits()[0].raw_data["commit"]["author"]["email"]
+
+#get gazers from one repo
+def analyze_one(repo1):
+    gazers_1 = []
+    repo_1 = g.get_repo(repo1)
+    for x in repo_1.get_stargazers_with_dates():
+        gazers_1.append(x.user.html_url)
+    for i in list(set(gazers_1)):
+        try:
+            print(i,g.get_user(str(i.split("/")[-1])).get_repos()[0].get_commits()[0].raw_data["commit"]["author"]["email"])
+        except:
+            print(i,"no repo")
+            
+analyze("username1/repo1")
