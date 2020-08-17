@@ -14,3 +14,26 @@ for i in range(0,11):
 #remove empty searches
 while([] in searches) : 
     searches.remove([]) 
+
+#view raw data keys    
+#[print(i) for i in list(searches[0][0].raw_data.keys())][0]
+
+repo_names = []
+repo_owners = []
+star_count = []
+links = []
+subs = []
+langs = []
+descs = []
+
+for i in range(len(searches)):
+    for n in range(len(searches[i])):
+        repo_names.append(searches[i][n].raw_data["name"])
+        repo_owners.append(searches[i][n].raw_data["owner"]["login"])
+        star_count.append(searches[i][n].raw_data["stargazers_count"])
+        links.append(searches[i][n].raw_data["html_url"])
+        subs.append(searches[i][n].raw_data["subscribers_count"])
+        langs.append(searches[i][n].raw_data["language"])
+        descs.append(searches[i][n].raw_data["description"])
+        
+df = pd.DataFrame({"Repo Name":repo_names,"Description":descs,"Owner":repo_owners,"Stars":star_count,"Subscribers":subs,"Language":langs,"Link":links})
